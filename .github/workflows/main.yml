@@ -1,6 +1,8 @@
 name: Java CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
   build:
@@ -17,5 +19,21 @@ jobs:
         run: ant -f build-auto.xml dist
       - uses: actions/upload-artifact@v2
         with:
-          name: package
-          path: dist/jpcsp-*.7z
+          name: Linux amd64 (64-bit)
+          path: [dist/jpcsp-*-linux-amd64.7z]
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Linux x86 (32-bit)
+          path: [dist/jpcsp-*-linux-x86.7z]
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Mac OS
+          path: [dist/jpcsp-*-macosx.7z]
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows amd64 (64-bit)
+          path: [dist/jpcsp-*-windows-amd64.7z]
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows x86 (32-bit)
+          path: [dist/jpcsp-*-windows-x86.7z]
